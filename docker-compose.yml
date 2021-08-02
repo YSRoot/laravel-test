@@ -25,6 +25,7 @@ services:
       - "33070:3306"
     volumes:
       - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - ./docker/mysql/init-testing-db.sql:/docker-entrypoint-initdb.d/init-testing-db.sql
     environment:
       MYSQL_DATABASE: homestead
       MYSQL_USER: homestead
