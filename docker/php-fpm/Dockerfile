@@ -39,13 +39,12 @@ ENV PATH="$PATH:/src/vendor/bin"
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 COPY composer.* ./
 RUN composer config -g github-oauth.github.com $GITHUB_API_TOKEN && \
-    composer install --no-scripts --no-autoloader --no-interaction --no-dev
+    composer install --no-scripts --no-autoloader --no-interaction --dev
 
 # Copy existing application directory contents
 COPY . /src
 
 RUN chgrp -R www-data storage bootstrap/cache && chmod -R ug+rwx storage bootstrap/cache && \
-    composer install --no-scripts --no-autoloader --no-interaction --dev && \
     composer dump-autoload --optimize
 
 RUN chmod 777 -R /src/resources/js/
