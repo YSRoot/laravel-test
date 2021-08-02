@@ -6,7 +6,7 @@ use App\Versions\V1\DTO\Traits\HasFactory;
 use App\Versions\V1\Factories\DTO\PasswordTokenDTOFactory;
 
 /** @method static PasswordTokenDTOFactory factory() */
-class PasswordTokenDTO
+class PasswordTokenDTO extends BaseDTO
 {
     use HasFactory;
 

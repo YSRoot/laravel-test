@@ -4,9 +4,12 @@ namespace App\Versions\V1\Http\Controllers\Auth;
 
 use App\Versions\V1\DTO\LoginInputDTO;
 use App\Versions\V1\DTO\PasswordTokenDTO;
-use App\Versions\V1\Factories\PasswordTokenFactory;
+use App\Versions\V1\DTO\RefreshInputDTO;
+use App\Versions\V1\Enums\GrantTypeEnum;
 use App\Versions\V1\Http\Requests\Auth\LoginRequest;
+use App\Versions\V1\Http\Requests\Auth\RefreshTokenRequest;
 use App\Versions\V1\Http\Resources\Auth\OAuthTokenResource;
+use App\Versions\V1\Services\Auth\TokenManager;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laravel\Passport\Exceptions\OAuthServerException;
@@ -21,10 +24,10 @@ class AuthController
     /**
      * @throws OAuthServerException
      */
-    public function login(LoginRequest $request, PasswordTokenFactory $factory): OAuthTokenResource
+    public function login(LoginRequest $request, TokenManager $tokenManager): OAuthTokenResource
     {
         $tokenArray = $this->withErrorHandling(
-            fn() => $factory->make(LoginInputDTO::factory()->fromLoginRequest($request))
+            fn() => $tokenManager->make(LoginInputDTO::factory()->fromLoginRequest($request))
         );
 
         return new OAuthTokenResource(PasswordTokenDTO::factory()->fromArray($tokenArray));
@@ -39,5 +42,19 @@ class AuthController
         $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($token);
 
         return response()->noContent();
+    }
+
+    /**
+     * @throws OAuthServerException
+     */
+    public function refresh(RefreshTokenRequest $request, TokenManager $tokenManager): OAuthTokenResource
+    {
+        $tokenArray = $this->withErrorHandling(
+            fn() => $tokenManager
+                ->driver(GrantTypeEnum::REFRESH_TOKEN)
+                ->make(RefreshInputDTO::factory()->fromRefreshTokenRequest($request))
+        );
+
+        return new OAuthTokenResource(PasswordTokenDTO::factory()->fromArray($tokenArray));
     }
 }

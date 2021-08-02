@@ -22,6 +22,8 @@ Route::group(['prefix' => 'v1', 'as' => 'v1.'], function (Router $router) {
     $router->group(['prefix' => 'auth', 'as' => 'auth.'], function (Router $router) {
         $router
             ->post('/login', [AuthController::class, 'login'])->name('login');
+        $router
+            ->post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
 
         $router
             ->post('/logout', [AuthController::class, 'logout'])

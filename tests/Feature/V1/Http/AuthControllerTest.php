@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Versions\V1\Http\Controllers\Auth\AuthController;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Passport\Client;
 use Tests\TestCase;
@@ -109,6 +110,56 @@ class AuthControllerTest extends TestCase
             ->assertUnauthorized()
             ->assertJson([
                 'message' => 'Unauthenticated.',
+            ]);
+    }
+
+    /** @test */
+    public function successRefreshToken(): void
+    {
+        $loginParams = [
+            'email' => $this->user->email,
+            'password' => 'password',
+            'client_id' => $this->client->id,
+            'client_secret' => $this->client->secret,
+        ];
+        $refreshToken = $this
+            ->postJson(action([AuthController::class, 'login'], $loginParams))
+            ->json('data.refresh_token');
+        $refreshParams = array_merge(
+            ['refresh_token' => $refreshToken],
+            Arr::only($loginParams, ['client_id', 'client_secret']),
+        );
+
+        $this
+            ->postJson(action([AuthController::class, 'refresh'], $refreshParams))
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    'token_type',
+                    'expires_in',
+                    'access_token',
+                    'refresh_token',
+                ],
+            ]);
+    }
+
+    /** @test */
+    public function failedRefreshTokenByWrongToken(): void
+    {
+        $refreshParams = [
+            'refresh_token' => Str::random(),
+            'client_id' => $this->client->id,
+            'client_secret' => $this->client->secret,
+        ];
+
+        $this
+            ->postJson(action([AuthController::class, 'refresh'], $refreshParams))
+            ->assertUnauthorized()
+            ->assertJson([
+                'error' => 'invalid_request',
+                'error_description' => 'The refresh token is invalid.',
+                'hint' => 'Cannot decrypt the refresh token',
+                'message' => 'The refresh token is invalid.',
             ]);
     }
 }

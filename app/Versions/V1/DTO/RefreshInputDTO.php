@@ -3,18 +3,17 @@
 namespace App\Versions\V1\DTO;
 
 use App\Versions\V1\DTO\Traits\HasFactory;
-use App\Versions\V1\Factories\DTO\LoginInputDTOFactory;
+use App\Versions\V1\Factories\DTO\RefreshInputDTOFactory;
 
-/** @method static LoginInputDTOFactory factory() */
-class LoginInputDTO extends BaseDTO implements OAuthAuthorizeContract
+/** @method static RefreshInputDTOFactory factory() */
+class RefreshInputDTO extends BaseDTO implements OAuthAuthorizeContract
 {
     use HasFactory;
 
-    public static string $factory = LoginInputDTOFactory::class;
+    public static string $factory = RefreshInputDTOFactory::class;
 
     public function __construct(
-        public string $email,
-        public string $password,
+        public string $refreshToken,
         public string $clientId,
         public string $clientSecret,
         public string $scope,
@@ -24,8 +23,7 @@ class LoginInputDTO extends BaseDTO implements OAuthAuthorizeContract
     public function authorizeParams(): array
     {
         return [
-            'username' => $this->email,
-            'password' => $this->password,
+            'refresh_token' => $this->refreshToken,
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
             'scope' => $this->scope,
