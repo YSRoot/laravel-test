@@ -1,5 +1,6 @@
 <?php
 
+use App\Versions\V1\Http\Controllers\Auth\AuthController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
@@ -18,4 +19,7 @@ use Laravel\Passport\Passport;
 Passport::routes();
 
 Route::group(['prefix' => 'v1', 'as' => 'v1.'], function (Router $router) {
+    $router->group(['prefix' => 'auth', 'as' => 'auth.'], function (Router $router) {
+        $router->post('/auth/login', [AuthController::class, 'login'])->name('login');
+    });
 });
