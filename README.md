@@ -7,5 +7,7 @@
 2. Проставить GITHUB_API_TOKEN в .ENV
 3. docker-compose build && docker-compose up (docker-compose up --build)
 4. Внутри контейнера выполнить php-artisan key:generate
+5. Внутри контейнера выполнить php-artisan migrate --seed
+6. Внутри контейнера выполнить php-artisan passport:install --uuids
 
 Docker поднимет nginx/php-fpm/mysql. Сайт будет доступен по умолчанию на 8000 порту (можно изменить в .env APP_PORT=9000)
