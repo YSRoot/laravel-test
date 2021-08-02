@@ -4,6 +4,7 @@ namespace Tests\Feature\V1\Http;
 
 use App\Models\User;
 use App\Versions\V1\Http\Controllers\Auth\AuthController;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Laravel\Passport\Client;
@@ -11,10 +12,14 @@ use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
 {
+    use DatabaseTransactions;
+
     private const PASSWORD = 'password';
 
     private Client $client;
     private User $user;
+
+    private array $connectionsToTransact = ['mysql'];
 
     protected function setUp(): void
     {
