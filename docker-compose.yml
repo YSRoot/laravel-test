@@ -16,7 +16,7 @@ services:
       args:
         GITHUB_API_TOKEN: ${GITHUB_API_TOKEN}
     volumes:
-      - .:/app
+      - .:/src
     depends_on:
       - mysql
   mysql:
