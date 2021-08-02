@@ -10,8 +10,10 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function actingAs(UserContract $user, $guard = null)
+    public function actingAs(UserContract $user, $guard = null): static
     {
         Passport::actingAs($user, guard: $guard);
+
+        return $this;
     }
 }

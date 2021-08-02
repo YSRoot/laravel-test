@@ -20,6 +20,12 @@ Passport::routes();
 
 Route::group(['prefix' => 'v1', 'as' => 'v1.'], function (Router $router) {
     $router->group(['prefix' => 'auth', 'as' => 'auth.'], function (Router $router) {
-        $router->post('/auth/login', [AuthController::class, 'login'])->name('login');
+        $router
+            ->post('/login', [AuthController::class, 'login'])->name('login');
+
+        $router
+            ->post('/logout', [AuthController::class, 'logout'])
+            ->middleware('auth:api')
+            ->name('logout');
     });
 });

@@ -39,7 +39,8 @@ class AuthControllerTest extends TestCase
             'client_secret' => $this->client->secret,
         ];
 
-        $this->postJson(action([AuthController::class, 'login'], $loginParams))
+        $this
+            ->postJson(action([AuthController::class, 'login'], $loginParams))
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
@@ -61,7 +62,8 @@ class AuthControllerTest extends TestCase
             'client_secret' => Str::random(),
         ];
 
-        $this->postJson(action([AuthController::class, 'login'], $loginParams))
+        $this
+            ->postJson(action([AuthController::class, 'login'], $loginParams))
             ->assertUnauthorized()
             ->assertJson([
                 'error' => 'invalid_client',
@@ -80,12 +82,33 @@ class AuthControllerTest extends TestCase
             'client_secret' => $this->client->secret,
         ];
 
-        $this->postJson(action([AuthController::class, 'login'], $loginParams))
+        $this
+            ->postJson(action([AuthController::class, 'login'], $loginParams))
             ->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertJson([
                 'error' => 'invalid_grant',
                 'error_description' => 'The user credentials were incorrect.',
                 'message' => 'The user credentials were incorrect.',
+            ]);
+    }
+
+    /** @test */
+    public function successLogout(): void
+    {
+        $this
+            ->actingAs($this->user)
+            ->postJson(action([AuthController::class, 'logout']))
+            ->assertNoContent();
+    }
+
+    /** @test */
+    public function failedLogoutByUnauthenticated(): void
+    {
+        $this
+            ->postJson(action([AuthController::class, 'logout']))
+            ->assertUnauthorized()
+            ->assertJson([
+                'message' => 'Unauthenticated.',
             ]);
     }
 }
