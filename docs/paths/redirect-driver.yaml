@@ -1,0 +1,12 @@
+get:
+  tags:
+    - auth
+  summary: Отправляет запрос к соц. сети для авторизации
+  parameters:
+    - in: path
+      name: driver
+      schema:
+        type: string
+        enum: ['vkontakte', 'facebook', 'google', 'github', 'twitter', 'mailru']
+      required: true
+      description: Соц сеть для авторизации.

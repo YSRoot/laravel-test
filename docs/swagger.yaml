@@ -1,0 +1,22 @@
+openapi: 3.0.2
+info:
+  title: Laravel test API
+  version: '1.0'
+servers:
+  - url: /
+tags:
+  - name: auth
+    description: Аутентификация
+paths:
+  /login:
+    $ref: 'paths/login.yaml'
+  /logout:
+    $ref: 'paths/logout.yaml'
+#  /refresh:
+#    $ref: 'paths/refresh.yaml'
+#  /register:
+#    $ref: 'paths/register.yaml'
+#  /redirect/{driver}:
+#    $ref: 'paths/redirect-driver.yaml'
+#  /callback/{driver}:
+#    $ref: 'paths/redirect-driver.yaml'

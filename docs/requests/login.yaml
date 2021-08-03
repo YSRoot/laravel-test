@@ -1,0 +1,22 @@
+type: object
+properties:
+  email:
+    type: string
+    description: Email
+    required: true
+  password:
+    type: string
+    description: Пароль
+    required: true
+  client_id:
+    type: string
+    description: ID клиента
+    required: true
+  client_secret:
+    type: string
+    description: Secret клиента
+    required: true
+  scope:
+    type: string
+    description: Scope
+    required: false

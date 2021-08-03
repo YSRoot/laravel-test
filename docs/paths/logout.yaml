@@ -1,0 +1,17 @@
+post:
+  tags:
+    - auth
+  summary: Выход из системы
+  parameters:
+    - in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI2NCIsImp0aSI6IjA3NDRjNTFhOTcyMDlhMWRmMDYyYTJjM2U4OTQ3OGE4NWU5MTc4NWJlMTllYjVlZDkzNTk0NjQ4NTQwMzc5ODRlZmQ2M2EyM2E5YjNjZWI2IiwiaWF0IjoxNjI3OTg3OTM0Ljg1NDcwNSwibmJmIjoxNjI3OTg3OTM0Ljg1NDcxNSwiZXhwIjoxNjU5NTIzOTM0LjgwMDE1Niwic3ViIjoiNjQiLCJzY29wZXMiOlsiKiJdfQ.U1yBR0_JFYgumsxRHI-68kVfnxhPBAt0-_JQ3pwehu3mSTUqJyH3cwjBnGUDu3Vm81-aSdBO8_-iJAfFiVA1bzLCHFCzEqVUXJ2TpzTuvcEa7P-ro0dj2j0fzwtPkE5NAGqI3cL6YnPTDLDcUtcQ-TU3ff-urCan3IzCMt_yuRKiYQpUzyNwj-OnkkylJY5tEKmTjRgnKnrQm9wSCdltAw1mpMJAsIWYZgvndJxiIixvEZZ0PqPm7yGWAtnuEsvMBZdQaa41gbL9Ucw2Ih2vi8CUO0nKvITnOXc4tOO_ANM5qt5EWNXjYW482rgBrQYz-Tqv_chPt9sZcok9aJZQkww4Vp8xB537Q2eYkpL7eIj1QqeBJKBdc0c0YyeohGPq11-ciC6cOL5S1DYn9lpIO-ZeKIH-nFNimo4i4QpWwzJPddTBejCA153IKLSrQ4g2aMXoJxTI5SgT8Nuv8VgQbUEtJ7-c7XET8eN0ZjqIVc9PF5YWI8cvqA-bNdkQOjf8E0o2Q02aQ4BoPyZOl6V-G4JieRSVo7AYhpbxirJtXaNBfOTJWfCJh8fsDfhfczXfRGazYXNRcxd-r-93KSYVm96Ecx-pbpJm-H1yB_8U8taK5i_mq8Sq_w-xWjtHU-KZBGg39i37rqHUb8SvX1SUgGiiBZQv0tR1-2rLYK-jaDI
+      required: true
+      description: Токен для атворизации пользователя
+  responses:
+    '204':
+      $ref: '../responses/204.yaml'
+    '401':
+      $ref: '../responses/401.yaml'

@@ -1,0 +1,16 @@
+post:
+  tags:
+    - auth
+  summary: Авторизация пользователя
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/login.yaml'
+  responses:
+    '200':
+      $ref: '../responses/auth/oauth-token-response.yaml'
+    '401 invalid grant':
+      $ref: '../responses/auth/oauth-invalid-client.yaml'
+    '401 invalid credentials':
+      $ref: '../responses/auth/oauth-invalid-credentials.yaml'

@@ -1,0 +1,21 @@
+description: Авторизация прошла успешно
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            token_type:
+              type: string
+              example: Bearer
+            expires_in:
+              type: int
+              example: 86400
+            access_token:
+              type: string
+              example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI2NCIsImp0aSI6IjA3NDRjNTFhOTcyMDlhMWRmMDYyYTJjM2U4OTQ3OGE4NWU5MTc4NWJlMTllYjVlZDkzNTk0NjQ4NTQwMzc5ODRlZmQ2M2EyM2E5YjNjZWI2IiwiaWF0IjoxNjI3OTg3OTM0Ljg1NDcwNSwibmJmIjoxNjI3OTg3OTM0Ljg1NDcxNSwiZXhwIjoxNjU5NTIzOTM0LjgwMDE1Niwic3ViIjoiNjQiLCJzY29wZXMiOlsiKiJdfQ.U1yBR0_JFYgumsxRHI-68kVfnxhPBAt0-_JQ3pwehu3mSTUqJyH3cwjBnGUDu3Vm81-aSdBO8_-iJAfFiVA1bzLCHFCzEqVUXJ2TpzTuvcEa7P-ro0dj2j0fzwtPkE5NAGqI3cL6YnPTDLDcUtcQ-TU3ff-urCan3IzCMt_yuRKiYQpUzyNwj-OnkkylJY5tEKmTjRgnKnrQm9wSCdltAw1mpMJAsIWYZgvndJxiIixvEZZ0PqPm7yGWAtnuEsvMBZdQaa41gbL9Ucw2Ih2vi8CUO0nKvITnOXc4tOO_ANM5qt5EWNXjYW482rgBrQYz-Tqv_chPt9sZcok9aJZQkww4Vp8xB537Q2eYkpL7eIj1QqeBJKBdc0c0YyeohGPq11-ciC6cOL5S1DYn9lpIO-ZeKIH-nFNimo4i4QpWwzJPddTBejCA153IKLSrQ4g2aMXoJxTI5SgT8Nuv8VgQbUEtJ7-c7XET8eN0ZjqIVc9PF5YWI8cvqA-bNdkQOjf8E0o2Q02aQ4BoPyZOl6V-G4JieRSVo7AYhpbxirJtXaNBfOTJWfCJh8fsDfhfczXfRGazYXNRcxd-r-93KSYVm96Ecx-pbpJm-H1yB_8U8taK5i_mq8Sq_w-xWjtHU-KZBGg39i37rqHUb8SvX1SUgGiiBZQv0tR1-2rLYK-jaDI
+            refresh_token:
+              type: string
+              example: def502008cbe20ac1a9bb932ebd9791115863d1a0bbff1fec253cf9475d52f6a3d8c2df91ea7e052aac342e499d45d2cf2c453af73c0c3e4003af14cdf6390dff941537c3cb370026eecb9a39e9df5fa91e9790e63d4ad9d1a588fc5d4c85418326cb48a3c2a1416d5a7a6d98c81bd378721156ad59ffbe11236231d792872f03d1c96b67de796a4254eb460590337c37b67b82350c8ad3be6086b155f2ce26c9dddd8acf06cde63df89c67c383d5b028d6cadf759fc91f1a3accb057244b71e2091322de8df3e266cd4718d28da4cbca6130bd65f12a020a6563fc51346033c1908bddc187e90006b53817d9b5ffdeffc3c62665c11a8d3ad3d80fba903c81f5000242346c68bd93264bd728cb7e0044dce9cb3ce822a18ac830daaa937f4b0c233db89513fd1f1a5a37e6c5566e81ca284398ccbba468405dd9a5518a2f3675eb209963d010dc502c1908e4fa16f60563c3897f231bbe10da1a8319334b4fee4cc23411d89
