@@ -1,0 +1,18 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Name
+    required: true
+  email:
+    type: string
+    description: Email
+    required: true
+  password:
+    type: string
+    description: Пароль
+    required: true
+  password_confirmation:
+    type: string
+    description: Потверждение пароля
+    required: true
