@@ -10,6 +10,13 @@ abstract class BaseDTO extends DataTransferObject
 {
     public int $case = CaseEnum::SNAKE;
 
+    public function setCase(int $case): self
+    {
+        $this->case = $case;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         $items = parent::toArray();
