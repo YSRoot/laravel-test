@@ -12,8 +12,8 @@ paths:
     $ref: 'paths/login.yaml'
   /logout:
     $ref: 'paths/logout.yaml'
-#  /refresh:
-#    $ref: 'paths/refresh.yaml'
+  /refresh:
+    $ref: 'paths/refresh.yaml'
 #  /register:
 #    $ref: 'paths/register.yaml'
 #  /redirect/{driver}:

@@ -1,0 +1,16 @@
+post:
+  tags:
+    - auth
+  summary: Refresh access token
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../requests/refresh.yaml'
+  responses:
+    '200':
+      $ref: '../responses/auth/oauth-token-response.yaml'
+    '401 invalid grant':
+      $ref: '../responses/auth/oauth-invalid-client.yaml'
+    '401 invalid token':
+      $ref: '../responses/auth/oauth-invalid-refresh-token.yaml'

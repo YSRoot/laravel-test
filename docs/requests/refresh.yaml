@@ -1,0 +1,18 @@
+type: object
+properties:
+  refresh_token:
+    type: string
+    description: Токен для обновления access токена
+    required: true
+  client_id:
+    type: string
+    description: ID клиента
+    required: true
+  client_secret:
+    type: string
+    description: Secret клиента
+    required: true
+  scope:
+    type: string
+    description: Scope
+    required: false

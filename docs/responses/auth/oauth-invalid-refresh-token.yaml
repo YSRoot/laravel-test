@@ -1,0 +1,18 @@
+description: Не валидный refresh токен
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: invalid_request
+        error_description:
+          type: string
+          example: The refresh token is invalid.
+        hint:
+          type: string
+          example: Cannot decrypt the refresh token
+        message:
+          type: string
+          example: The refresh token is invalid.
