@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Versions\V1\Services\Auth\TokenManagers;
+namespace App\Versions\V1\Services\Auth\OAuthManagers;
 
 use App\Versions\V1\DTO\OAuthAuthorizeContract;
 use App\Versions\V1\Enums\GrantTypeEnum;

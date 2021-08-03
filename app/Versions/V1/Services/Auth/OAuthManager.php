@@ -3,9 +3,9 @@
 namespace App\Versions\V1\Services\Auth;
 
 use App\Versions\V1\Enums\GrantTypeEnum;
-use App\Versions\V1\Services\Auth\TokenManagers\PasswordTokenManager;
-use App\Versions\V1\Services\Auth\TokenManagers\RefreshTokenManager;
-use App\Versions\V1\Services\Auth\TokenManagers\TokenManagerInterface;
+use App\Versions\V1\Services\Auth\OAuthManagers\PasswordTokenManager;
+use App\Versions\V1\Services\Auth\OAuthManagers\RefreshTokenManager;
+use App\Versions\V1\Services\Auth\OAuthManagers\TokenManagerInterface;
 use Illuminate\Support\Manager;
 
 class OAuthManager extends Manager
