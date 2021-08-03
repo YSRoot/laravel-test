@@ -21,7 +21,7 @@ Passport::routes();
 Route::group(['prefix' => 'v1', 'as' => 'v1.'], function (Router $router) {
     $router->group(['prefix' => 'auth', 'as' => 'auth.'], function (Router $router) {
         $router
-            ->post('/login', [AuthController::class, 'register'])
+            ->post('/register', [AuthController::class, 'register'])
             ->name('register');
 
         $router
