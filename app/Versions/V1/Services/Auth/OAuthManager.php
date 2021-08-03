@@ -2,7 +2,7 @@
 
 namespace App\Versions\V1\Services\Auth;
 
-use App\Versions\V1\Enums\GrantTypeEnum;
+use App\Enums\GrantTypeEnum;
 use App\Versions\V1\Services\Auth\OAuthManagers\PasswordTokenManager;
 use App\Versions\V1\Services\Auth\OAuthManagers\RefreshTokenManager;
 use App\Versions\V1\Services\Auth\OAuthManagers\TokenManagerInterface;

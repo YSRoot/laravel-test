@@ -4,15 +4,19 @@ namespace Tests\Feature\V1\Http;
 
 use App\Models\User;
 use App\Versions\V1\Http\Controllers\Auth\AuthController;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Laravel\Passport\Client;
 use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
 {
+    use WithFaker;
     use DatabaseTransactions;
 
     private const PASSWORD = 'password';
@@ -28,6 +32,114 @@ class AuthControllerTest extends TestCase
 
         $this->client = Client::factory()->asPasswordClient()->create();
         $this->user = User::factory()->state(['password' => bcrypt(self::PASSWORD)])->create();
+    }
+
+    /** @test */
+    public function successRegister(): void
+    {
+        Event::fake();
+        $registerParams = [
+            'name' => $this->faker->name(),
+            'email' => $this->faker->email(),
+            'password' => $password = $this->faker->password(8, 128),
+            'password_confirmation' => $password,
+        ];
+
+        $this
+            ->postJson(action([AuthController::class, 'register'], $registerParams))
+            ->assertNoContent(Response::HTTP_CREATED);
+
+        Event::assertDispatched(Registered::class);
+    }
+
+    public function registerValidationFailedDataProvider(): array
+    {
+        return [
+            [
+                'params' => [
+                    'name' => 'name',
+                    'email' => 'wrongEmail',
+                    'password' => $truePassword = 'avcasd123Asd',
+                ],
+                'expectedErrors' => [
+                    'email',
+                    'password',
+                ],
+            ],
+            [
+                'params' => [
+                    'name' => 'name',
+                    'email' => $trueEmail = 'test@test.ru',
+                    'password' => $truePassword,
+                ],
+                'expectedErrors' => [
+                    'password',
+                ],
+            ],
+            [
+                'params' => [
+                    'name' => 'name',
+                    'password' => $truePassword,
+                    'password_confirmation' => $truePassword,
+                ],
+                'expectedErrors' => [
+                    'email',
+                ],
+            ],
+            [
+                'params' => [
+                    'email' => $trueEmail,
+                    'password' => $truePassword,
+                    'password_confirmation' => $truePassword,
+                ],
+                'expectedErrors' => [
+                    'name',
+                ],
+            ],
+            [
+                'params' => [],
+                'expectedErrors' => [
+                    'name',
+                    'email',
+                    'password',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider registerValidationFailedDataProvider
+     */
+    public function failedOnValidationRegister(array $params, array $expectedErrors)
+    {
+        $this
+            ->postJson(action([AuthController::class, 'register'], $params))
+            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonValidationErrors($expectedErrors);
+    }
+
+    /** @test */
+    public function failedOnUniqueEmailRegister()
+    {
+        $registerParams = [
+            'name' => $this->faker->name(),
+            'email' => $this->user->email,
+            'password' => $password = $this->faker->password(8, 128),
+            'password_confirmation' => $password,
+        ];
+
+        $this
+            ->postJson(action([AuthController::class, 'register'], $registerParams))
+            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonValidationErrors(['email'])
+            ->assertJsonFragment([
+                'errors' => [
+                    'email' => [
+                        __('validation.unique', ['attribute' => 'email']),
+                    ],
+                ],
+            ]);
     }
 
     /** @test */

@@ -2,6 +2,7 @@
 
 namespace App\Versions\V1\DTO;
 
+use App\DTO\BaseDTO;
 use App\Versions\V1\DTO\Traits\HasFactory;
 use App\Versions\V1\Factories\DTO\PasswordTokenDTOFactory;
 
@@ -12,11 +13,8 @@ class PasswordTokenDTO extends BaseDTO
 
     public static string $factory = PasswordTokenDTOFactory::class;
 
-    public function __construct(
-        public string $tokenType,
-        public int $expiresIn,
-        public string $accessToken,
-        public string $refreshToken,
-    ) {
-    }
+    public string $tokenType;
+    public int $expiresIn;
+    public string $accessToken;
+    public string $refreshToken;
 }

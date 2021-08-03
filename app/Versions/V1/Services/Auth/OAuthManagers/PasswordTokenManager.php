@@ -2,8 +2,8 @@
 
 namespace App\Versions\V1\Services\Auth\OAuthManagers;
 
+use App\Enums\GrantTypeEnum;
 use App\Versions\V1\DTO\OAuthAuthorizeContract;
-use App\Versions\V1\Enums\GrantTypeEnum;
 use League\OAuth2\Server\AuthorizationServer;
 use Nyholm\Psr7\Response;
 use Nyholm\Psr7\ServerRequest;

@@ -2,6 +2,7 @@
 
 namespace App\Versions\V1\DTO;
 
+use App\DTO\BaseDTO;
 use App\Versions\V1\DTO\Traits\HasFactory;
 use App\Versions\V1\Factories\DTO\RefreshInputDTOFactory;
 
@@ -12,13 +13,10 @@ class RefreshInputDTO extends BaseDTO implements OAuthAuthorizeContract
 
     public static string $factory = RefreshInputDTOFactory::class;
 
-    public function __construct(
-        public string $refreshToken,
-        public string $clientId,
-        public string $clientSecret,
-        public string $scope,
-    ){
-    }
+    public string $refreshToken;
+    public string $clientId;
+    public string $clientSecret;
+    public string $scope;
 
     public function authorizeParams(): array
     {
