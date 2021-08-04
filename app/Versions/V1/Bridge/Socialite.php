@@ -9,17 +9,17 @@ use App\Versions\V1\Facades\OAuth;
 use App\Versions\V1\Http\Requests\Auth\SocialiteRedirectRequest;
 use App\Versions\V1\Services\SocialiteService;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite as LaravelSocialite;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Laravel\Socialite\Facades\Socialite as LaravelSocialite;
 use Throwable;
 
 class Socialite
 {
     public function __construct(
-        private SocialiteService $socialiteService
+        private SocialiteService $socialiteService,
     ) {
     }
 
@@ -50,22 +50,13 @@ class Socialite
         //get client params
         [$clientId, $clientSecret, $scope] = $request->session()->get(self::CLIENT_PARAMS_SESSION_KEY);
 
-        //create user or social profile
-        $listener = $this->socialiteService->handleCallback($socialiteUser, $driver, $clientId);
+        $this->socialiteService->handleCallback($socialiteUser, $driver);
 
         //authorize user with social grant
         $tokenArray = OAuth::driver(GrantTypeEnum::SOCIAL)->make(
-            new SocialAuthorizeDTO(
-                driver: $driver,
-                accessToken: $socialiteUser->token,
-                clientId: $clientId,
-                clientSecret: $clientSecret,
-                scope: $scope,
-            )
+            SocialAuthorizeDTO::factory()
+                ->fromParams($driver, $socialiteUser->token, $clientId, $clientSecret, $scope,)
         );
-
-        //revoke access token
-        $listener->revokeAccessToken($socialiteUser->token);
 
         return PasswordTokenDTO::factory()->fromArray($tokenArray);
     }
