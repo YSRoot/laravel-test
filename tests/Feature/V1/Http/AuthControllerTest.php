@@ -39,8 +39,8 @@ class AuthControllerTest extends TestCase
     {
         Event::fake();
         $registerParams = [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->email(),
+            'name' => $name = $this->faker->name(),
+            'email' => $email = $this->faker->email(),
             'password' => $password = $this->faker->password(8, 128),
             'password_confirmation' => $password,
         ];
@@ -50,6 +50,10 @@ class AuthControllerTest extends TestCase
             ->assertNoContent(Response::HTTP_CREATED);
 
         Event::assertDispatched(UserRegistered::class);
+        $this->assertDatabaseHas(User::class, [
+            'email' => $email,
+            'name' => $name,
+        ]);
     }
 
     public function registerValidationFailedDataProvider(): array
