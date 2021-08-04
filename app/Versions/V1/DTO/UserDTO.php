@@ -15,5 +15,5 @@ class UserDTO extends BaseDTO
 
     public string $name;
     public string $email;
-    public string $password;
+    public ?string $password;
 }

@@ -27,7 +27,7 @@ class AuthController
 
     public function register(RegisterRequest $request, UserService $userService): Response
     {
-        $userService->register(UserDTO::factory()->fromRegisterRequest($request));
+        $userService->create(UserDTO::factory()->fromRegisterRequest($request));
 
         return response()->noContent(Response::HTTP_CREATED);
     }

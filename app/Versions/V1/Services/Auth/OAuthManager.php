@@ -20,6 +20,11 @@ class OAuthManager extends Manager
         return new RefreshTokenManager();
     }
 
+    public function createSocialDriver(): TokenManagerInterface
+    {
+        return new RefreshTokenManager();
+    }
+
     public function getDefaultDriver(): string
     {
         return GrantTypeEnum::PASSWORD;

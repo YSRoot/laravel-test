@@ -1,6 +1,7 @@
 <?php
 
 use App\Versions\V1\Http\Controllers\Auth\AuthController;
+use App\Versions\V1\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
@@ -36,5 +37,16 @@ Route::group(['prefix' => 'v1', 'as' => 'v1.'], function (Router $router) {
             ->post('/logout', [AuthController::class, 'logout'])
             ->middleware('auth:api')
             ->name('logout');
+
+
+        $router->group(['middleware' => 'session.start', 'as' => 'social.'], function (Router $router) {
+            $router
+                ->get('redirect/{driver}', [SocialiteController::class, 'redirect'])
+                ->name('redirect');
+
+            $router
+                ->get('callback/{driver}', [SocialiteController::class, 'callback'])
+                ->name('callback');
+        });
     });
 });
