@@ -4,8 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa6eeb92b73f42803119952920cbfd3d",
+    "content-hash": "0fda8981f6715dfa49a5f3645667cc80",
     "packages": [
+        {
+            "name": "adaojunior/passport-social-grant",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/YSRoot/passport-social-grant.git",
+                "reference": "5f71c6627741813fb43cf52d8e36faa918458cfc"
+            },
+            "require": {
+                "laravel/passport": "^8.0|^9.0|^10.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5|^9.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Adaojunior\\PassportSocialGrant\\SocialGrantServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Adaojunior\\PassportSocialGrant\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Adaojunior\\PassportSocialGrant\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit --colors=always"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adão Júnior",
+                    "email": "dev@pardim.com",
+                    "homepage": "https://github.com/adaojunior",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Social grant for Laravel Passport",
+            "homepage": "https://github.com/adaojunior/passport-social-grant",
+            "keywords": [
+                "guard",
+                "laravel",
+                "oauth",
+                "passport",
+                "social"
+            ],
+            "time": "2021-08-03T19:53:35+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -8843,7 +8904,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "adaojunior/passport-social-grant": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
