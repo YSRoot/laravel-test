@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\V1\Http;
 
+use App\Events\UserRegistered;
 use App\Models\User;
 use App\Versions\V1\Http\Controllers\Auth\AuthController;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
@@ -49,7 +49,7 @@ class AuthControllerTest extends TestCase
             ->postJson(action([AuthController::class, 'register'], $registerParams))
             ->assertNoContent(Response::HTTP_CREATED);
 
-        Event::assertDispatched(Registered::class);
+        Event::assertDispatched(UserRegistered::class);
     }
 
     public function registerValidationFailedDataProvider(): array
