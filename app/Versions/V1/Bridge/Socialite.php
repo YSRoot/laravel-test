@@ -23,7 +23,7 @@ class Socialite
     ) {
     }
 
-    private const CLIENT_PARAMS_SESSION_KEY = 'client_params';
+    public const CLIENT_PARAMS_SESSION_KEY = 'client_params';
 
     public function redirect(SocialiteRedirectRequest $request, string $driver): RedirectResponse
     {
