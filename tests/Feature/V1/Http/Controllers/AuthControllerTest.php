@@ -34,14 +34,13 @@ class AuthControllerTest extends TestCase
         $this->user = User::factory()->state(['password' => bcrypt(self::PASSWORD)])->create();
     }
 
-    /** @test */
-    public function successRegister(): void
+    public function testSuccessRegister(): void
     {
         Event::fake();
         $registerParams = [
             'name' => $name = $this->faker->name(),
             'email' => $email = $this->faker->email(),
-            'password' => $password = $this->faker->password(8, 128),
+            'password' => $password = $this->faker->password(8, 128) . '1Ac',
             'password_confirmation' => $password,
         ];
 
@@ -112,10 +111,9 @@ class AuthControllerTest extends TestCase
     }
 
     /**
-     * @test
      * @dataProvider registerValidationFailedDataProvider
      */
-    public function failedOnValidationRegister(array $params, array $expectedErrors)
+    public function testFailedOnValidationRegister(array $params, array $expectedErrors)
     {
         $this
             ->postJson(action([AuthController::class, 'register'], $params))
@@ -123,8 +121,7 @@ class AuthControllerTest extends TestCase
             ->assertJsonValidationErrors($expectedErrors);
     }
 
-    /** @test */
-    public function failedOnUniqueEmailRegister()
+    public function testFailedOnUniqueEmailRegister()
     {
         $registerParams = [
             'name' => $this->faker->name(),
@@ -146,8 +143,7 @@ class AuthControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function successLogin(): void
+    public function testSuccessLogin(): void
     {
         $loginParams = [
             'email' => $this->user->email,
@@ -169,8 +165,7 @@ class AuthControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function failedLoginByWrongClient(): void
+    public function  testFailedLoginByWrongClient(): void
     {
         $loginParams = [
             'email' => $this->user->email,
@@ -189,8 +184,7 @@ class AuthControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function failedLoginByWrongPassword(): void
+    public function testFailedLoginByWrongPassword(): void
     {
         $loginParams = [
             'email' => $this->user->email,
@@ -209,8 +203,7 @@ class AuthControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function successLogout(): void
+    public function testSuccessLogout(): void
     {
         $this
             ->actingAs($this->user)
@@ -218,8 +211,7 @@ class AuthControllerTest extends TestCase
             ->assertNoContent();
     }
 
-    /** @test */
-    public function failedLogoutByUnauthenticated(): void
+    public function testFailedLogoutByUnauthenticated(): void
     {
         $this
             ->postJson(action([AuthController::class, 'logout']))
@@ -229,8 +221,7 @@ class AuthControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function successRefreshToken(): void
+    public function testSuccessRefreshToken(): void
     {
         $loginParams = [
             'email' => $this->user->email,
