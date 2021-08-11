@@ -13,8 +13,6 @@ services:
     build:
       context: .
       dockerfile: docker/php-fpm/Dockerfile
-      args:
-        GITHUB_API_TOKEN: ${GITHUB_API_TOKEN}
     volumes:
       - .:/src
     depends_on:

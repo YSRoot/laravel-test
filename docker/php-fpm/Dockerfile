@@ -34,12 +34,10 @@ RUN docker-php-ext-configure opcache --enable-opcache && \
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-ARG GITHUB_API_TOKEN
 ENV PATH="$PATH:/src/vendor/bin"
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 COPY composer.* ./
-RUN composer config -g github-oauth.github.com $GITHUB_API_TOKEN && \
-    composer install --no-scripts --no-autoloader --no-interaction --dev
+RUN composer install --no-scripts --no-autoloader --no-interaction --dev
 
 # Copy existing application directory contents
 COPY . /src
