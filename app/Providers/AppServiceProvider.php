@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Adaojunior\PassportSocialGrant\SocialGrantUserProvider as SocialGrantUserProviderContract;
 use App\Versions\V1\Services\Auth\OAuthManager;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(SocialGrantUserProviderContract::class, SocialGrantUserProvider::class);
+
+        if ($this->app->isLocal()) {
+            $this->app->register(IdeHelperServiceProvider::class);
+        }
     }
 
     /**
