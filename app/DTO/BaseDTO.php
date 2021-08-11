@@ -9,6 +9,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 abstract class BaseDTO extends DataTransferObject
 {
     public int $case = CaseEnum::SNAKE;
+    protected array $exceptKeys = ['case'];
 
     public function setCase(int $case): self
     {
