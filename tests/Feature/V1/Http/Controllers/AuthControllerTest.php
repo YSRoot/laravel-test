@@ -24,7 +24,7 @@ class AuthControllerTest extends TestCase
     private Client $client;
     private User $user;
 
-    private array $connectionsToTransact = ['mysql'];
+    protected array $connectionsToTransact = ['mysql'];
 
     protected function setUp(): void
     {

@@ -25,6 +25,9 @@ class AuthController
 {
     use HandlesOAuthErrors;
 
+    /**
+     * @throws UnknownProperties
+     */
     public function register(RegisterRequest $request, UserService $userService): Response
     {
         $userService->create(UserDTO::factory()->fromRegisterRequest($request));
