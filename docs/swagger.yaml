@@ -16,9 +16,7 @@ paths:
     $ref: 'paths/logout.yaml'
   /api/v1/auth/refresh:
     $ref: 'paths/refresh.yaml'
-#  /register:
-#    $ref: 'paths/register.yaml'
-#  /redirect/{driver}:
-#    $ref: 'paths/redirect-driver.yaml'
-#  /callback/{driver}:
-#    $ref: 'paths/redirect-driver.yaml'
+  /redirect/{driver}:
+    $ref: 'paths/redirect-driver.yaml'
+  /callback/{driver}:
+    $ref: 'paths/callback-driver.yaml'

@@ -7,6 +7,14 @@ get:
       name: driver
       schema:
         type: string
-        enum: ['vkontakte', 'facebook', 'google', 'github', 'twitter', 'mailru']
+        enum: ['google']
       required: true
       description: Соц сеть для авторизации.
+  responses:
+    '302':
+      description: Redirect login to driver
+      headers:
+        Location:
+          schema:
+            type: array
+          description: Link to social driver (provider)

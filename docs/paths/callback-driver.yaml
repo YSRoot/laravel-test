@@ -1,0 +1,14 @@
+get:
+  tags:
+    - auth
+  parameters:
+    - in: path
+      name: driver
+      schema:
+        type: string
+        enum: [ 'google' ]
+      required: true
+      description: Название соц. сети
+  responses:
+    '200':
+      $ref: '../responses/auth/oauth-token-response.yaml'
