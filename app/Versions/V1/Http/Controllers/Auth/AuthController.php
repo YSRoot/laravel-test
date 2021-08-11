@@ -33,7 +33,7 @@ class AuthController
     }
 
     /**
-     * @throws OAuthServerException
+     * @throws OAuthServerException|UnknownProperties
      */
     public function login(LoginRequest $request): OAuthTokenResource
     {

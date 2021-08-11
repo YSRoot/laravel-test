@@ -9,7 +9,7 @@ use Nyholm\Psr7\Response;
 use Nyholm\Psr7\ServerRequest;
 use Psr\Http\Message\ServerRequestInterface;
 
-class PasswordTokenManager implements TokenManagerInterface
+class BaseOAuthManager implements TokenManagerInterface
 {
     protected static string $grantType = GrantTypeEnum::PASSWORD;
 
