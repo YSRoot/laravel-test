@@ -3,6 +3,7 @@
 namespace App\Versions\V1\Services\Auth;
 
 use App\Enums\GrantTypeEnum;
+use App\Versions\V1\Services\Auth\OAuthManagers\PasswordTokenManager;
 use App\Versions\V1\Services\Auth\OAuthManagers\BaseOAuthManager;
 use App\Versions\V1\Services\Auth\OAuthManagers\RefreshTokenManager;
 use App\Versions\V1\Services\Auth\OAuthManagers\SocialTokenManager;
@@ -13,7 +14,7 @@ class OAuthManager extends Manager
 {
     public function createPasswordDriver(): TokenManagerInterface
     {
-        return new BaseOAuthManager();
+        return new PasswordTokenManager();
     }
 
     public function createRefreshTokenDriver(): TokenManagerInterface
