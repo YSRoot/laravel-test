@@ -31,4 +31,15 @@ class UserDTOFactory implements FactoryInterface
             email: $user->getEmail()
         );
     }
+
+    /**
+     * @throws UnknownProperties
+     */
+    public function fromUser(\App\Models\User $user): UserDTO
+    {
+        return new UserDTO(
+            name: $user->name,
+            email: $user->email,
+        );
+    }
 }
