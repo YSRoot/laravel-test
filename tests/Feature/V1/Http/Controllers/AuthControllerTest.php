@@ -5,26 +5,22 @@ namespace Tests\Feature\V1\Http\Controllers;
 use App\Events\UserRegistered;
 use App\Models\User;
 use App\Versions\V1\Http\Controllers\Auth\AuthController;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Laravel\Passport\Client;
-use Tests\TestCase;
+use Tests\Feature\TestCase;
 
 class AuthControllerTest extends TestCase
 {
     use WithFaker;
-    use DatabaseTransactions;
 
     private const PASSWORD = 'password';
 
     private Client $client;
     private User $user;
-
-    protected array $connectionsToTransact = ['mysql'];
 
     protected function setUp(): void
     {

@@ -18,7 +18,7 @@ use Laravel\Socialite\Two\User;
 use Mockery;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Tests\TestCase;
+use Tests\Feature\TestCase;
 use Throwable;
 
 class SocialiteTest extends TestCase

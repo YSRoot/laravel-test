@@ -7,19 +7,14 @@ use App\Versions\V1\Services\SocialiteService;
 use App\Versions\V1\Services\UserService;
 use App\Models\User as UserModel;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Socialite\Two\User;
-use Tests\TestCase;
+use Tests\Feature\TestCase;
 use Throwable;
 
 class SocialiteServiceTest extends TestCase
 {
-    use DatabaseTransactions;
-
     private string $driver;
     private User $socialiteUser;
-
-    protected array $connectionsToTransact = ['mysql'];
 
     protected function setUp(): void
     {
