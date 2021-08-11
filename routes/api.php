@@ -19,33 +19,27 @@ use Laravel\Passport\Passport;
 
 Passport::routes();
 
-Route::group(['prefix' => 'v1', 'as' => 'v1.'], function (Router $router) {
-    $router->group(['prefix' => 'auth', 'as' => 'auth.'], function (Router $router) {
-        $router
-            ->post('/register', [AuthController::class, 'register'])
+Route::group(['prefix' => 'v1', 'as' => 'v1.'], function () {
+    Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
+        Route::post('/register', [AuthController::class, 'register'])
             ->name('register');
 
-        $router
-            ->post('/login', [AuthController::class, 'login'])
+        Route::post('/login', [AuthController::class, 'login'])
             ->name('login');
 
-        $router
-            ->post('/refresh', [AuthController::class, 'refresh'])
+        Route::post('/refresh', [AuthController::class, 'refresh'])
             ->name('refresh');
 
-        $router
-            ->post('/logout', [AuthController::class, 'logout'])
+        Route::post('/logout', [AuthController::class, 'logout'])
             ->middleware('auth:api')
             ->name('logout');
 
 
-        $router->group(['middleware' => 'session.start', 'as' => 'social.'], function (Router $router) {
-            $router
-                ->get('redirect/{driver}', [SocialiteController::class, 'redirect'])
+        Route::group(['middleware' => 'session.start', 'as' => 'social.'], function () {
+            Route::get('redirect/{driver}', [SocialiteController::class, 'redirect'])
                 ->name('redirect');
 
-            $router
-                ->get('callback/{driver}', [SocialiteController::class, 'callback'])
+            Route::get('callback/{driver}', [SocialiteController::class, 'callback'])
                 ->name('callback');
         });
     });
