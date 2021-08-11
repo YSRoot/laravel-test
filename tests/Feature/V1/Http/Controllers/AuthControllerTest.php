@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\V1\Http;
+namespace Tests\Feature\V1\Http\Controllers;
 
 use App\Events\UserRegistered;
 use App\Models\User;
