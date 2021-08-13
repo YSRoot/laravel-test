@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Versions\V1\Factories\DTO;
+namespace App\Versions\V1\Factories\DTO\Users;
 
 use App\Versions\V1\DTO\Users\UserSocialProfileDTO;
+use App\Versions\V1\Factories\DTO\Contracts\FactoryInterface;
 use Laravel\Socialite\Contracts\User;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 

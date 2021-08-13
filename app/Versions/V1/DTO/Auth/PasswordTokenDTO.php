@@ -4,7 +4,7 @@ namespace App\Versions\V1\DTO\Auth;
 
 use App\DTO\BaseDTO;
 use App\Versions\V1\DTO\Traits\HasFactory;
-use App\Versions\V1\Factories\DTO\PasswordTokenDTOFactory;
+use App\Versions\V1\Factories\DTO\Auth\PasswordTokenDTOFactory;
 
 /**
  * @method static PasswordTokenDTOFactory factory()

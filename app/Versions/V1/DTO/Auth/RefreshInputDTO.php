@@ -5,7 +5,7 @@ namespace App\Versions\V1\DTO\Auth;
 use App\DTO\BaseDTO;
 use App\Versions\V1\DTO\Contracts\OAuthAuthorizeContract;
 use App\Versions\V1\DTO\Traits\HasFactory;
-use App\Versions\V1\Factories\DTO\RefreshInputDTOFactory;
+use App\Versions\V1\Factories\DTO\Auth\RefreshInputDTOFactory;
 use JetBrains\PhpStorm\ArrayShape;
 
 /**

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Versions\V1\Factories\DTO;
+namespace App\Versions\V1\Factories\DTO\Auth;
 
 use App\Versions\V1\DTO\Auth\LoginInputDTO;
+use App\Versions\V1\Factories\DTO\Contracts\FactoryInterface;
 use App\Versions\V1\Http\Requests\Auth\LoginRequest;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
