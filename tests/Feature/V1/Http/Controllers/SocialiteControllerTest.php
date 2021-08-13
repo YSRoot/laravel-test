@@ -6,7 +6,7 @@ use App\Versions\V1\Bridge\Socialite;
 use App\Versions\V1\DTO\Auth\PasswordTokenDTO;
 use App\Versions\V1\Http\Controllers\Auth\SocialiteController;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
-use Tests\Feature\TestCase;
+use Tests\TestCase;
 
 class SocialiteControllerTest extends TestCase
 {

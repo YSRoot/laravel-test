@@ -8,11 +8,14 @@ use App\Versions\V1\Services\UserService;
 use App\Models\User as UserModel;
 use Illuminate\Auth\Access\AuthorizationException;
 use Laravel\Socialite\Two\User;
-use Tests\Feature\TestCase;
+use Tests\TestCase;
+use Tests\WithTransaction;
 use Throwable;
 
 class SocialiteServiceTest extends TestCase
 {
+    use WithTransaction;
+
     private string $driver;
     private User $socialiteUser;
 

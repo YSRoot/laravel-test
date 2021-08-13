@@ -8,10 +8,13 @@ use App\Versions\V1\DTO\Users\UserDTO;
 use App\Versions\V1\Services\UserService;
 use Illuminate\Support\Facades\Event;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
-use Tests\Feature\TestCase;
+use Tests\TestCase;
+use Tests\WithTransaction;
 
 class UserServiceTest extends TestCase
 {
+    use WithTransaction;
+
     protected function setUp(): void
     {
         parent::setUp();

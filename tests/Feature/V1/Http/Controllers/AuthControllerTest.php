@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Laravel\Passport\Client;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\Feature\TestCase;
+use Tests\TestCase;
+use Tests\WithTransaction;
 
 class AuthControllerTest extends TestCase
 {
     use WithFaker;
+    use WithTransaction;
 
     private const PASSWORD = 'password';
 
