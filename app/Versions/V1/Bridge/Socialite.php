@@ -9,6 +9,7 @@ use App\Versions\V1\Facades\OAuth;
 use App\Versions\V1\Http\Requests\Auth\SocialiteRedirectRequest;
 use App\Versions\V1\Services\SocialiteService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite as LaravelSocialite;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User;
@@ -27,10 +28,17 @@ class Socialite
 
     public function redirect(SocialiteRedirectRequest $request, string $driver): RedirectResponse
     {
-        $request->session()->put(
-            self::CLIENT_PARAMS_SESSION_KEY,
-            [$request->client_id, $request->client_secret, $request->scope]
-        );
+        $request
+            ->session()
+            ->put(
+                self::CLIENT_PARAMS_SESSION_KEY,
+                [$request->client_id, $request->client_secret, $request->scope]
+            );
+        if ($id = Auth::id()) {
+            $request
+                ->session()
+                ->put('user_id', $id);
+        }
 
         return LaravelSocialite::driver($driver)->redirect();
     }
@@ -49,13 +57,14 @@ class Socialite
         throw_if(!$request->session()->has(self::CLIENT_PARAMS_SESSION_KEY), InvalidStateException::class);
         //get client params
         [$clientId, $clientSecret, $scope] = $request->session()->get(self::CLIENT_PARAMS_SESSION_KEY);
+        $userId = $request->session()->get('user_id');
 
-        $this->socialiteService->handleCallback($socialiteUser, $driver);
+        $this->socialiteService->handleCallback($socialiteUser, $driver, $userId);
 
         //authorize user with social grant
         $tokenArray = OAuth::driver(GrantTypeEnum::SOCIAL)->make(
             SocialAuthorizeDTO::factory()
-                ->fromParams($driver, $socialiteUser->token, $clientId, $clientSecret, $scope,)
+                ->fromParams($driver, $socialiteUser->token, $clientId, $clientSecret, $scope)
         );
 
         return PasswordTokenDTO::factory()->fromArray($tokenArray);

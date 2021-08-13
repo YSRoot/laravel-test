@@ -75,7 +75,7 @@ class SocialiteServiceTest extends TestCase
         $user = UserModel::factory()->create(['email' => $this->socialiteUser->getEmail()]);
         $this->actingAs($user);
 
-        $this->getSocialiteService()->handleCallback($this->socialiteUser, $this->driver);
+        $this->getSocialiteService()->handleCallback($this->socialiteUser, $this->driver, $user->id);
 
         $this->assertDatabaseHas(UserModel::class, [
             'email' => $this->socialiteUser->getEmail(),

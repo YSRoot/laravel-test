@@ -58,7 +58,7 @@ class SocialiteTest extends TestCase
         $socialiteService = $this->mock(SocialiteService::class)
             ->shouldReceive('handleCallback')
             ->once()
-            ->with($socialiteUser, $driver)
+            ->with($socialiteUser, $driver, null)
             ->getMock();
 
         $result = (new Socialite($socialiteService))->callback($request, $driver);

@@ -21,21 +21,25 @@ class SocialiteService
     /**
      * @throws Throwable
      */
-    public function handleCallback(SocialiteUser $socialUser, string $driver): void
+    public function handleCallback(SocialiteUser $socialUser, string $driver, ?int $userId = null): void
     {
         $userDTO = UserDTO::factory()->fromSocialUser($socialUser);
         $user = $this->userService->firstOrCreate($userDTO);
 
-        $this->createSocialProfile($socialUser, $driver, $user);
+        $this->createSocialProfile($socialUser, $driver, $user, $user->id == $userId);
     }
 
     /**
      * @throws Throwable
      */
-    protected function createSocialProfile(SocialiteUser $socialUser, string $driver, User $user): void
-    {
+    protected function createSocialProfile(
+        SocialiteUser $socialUser,
+        string $driver,
+        User $user,
+        bool $isAuthorized
+    ): void {
         // Привязка социального профиля возможна только для авторизованных пользователей или нового пользователя
-        throw_if(!$user->wasRecentlyCreated && !Auth::check(), AuthorizationException::class);
+        throw_if(!$user->wasRecentlyCreated && !$isAuthorized, AuthorizationException::class);
 
         $socialProfile = new UserSocialProfile();
         $socialProfile->fill(
