@@ -3,8 +3,8 @@
 namespace App\Versions\V1\Bridge;
 
 use App\Enums\GrantTypeEnum;
-use App\Versions\V1\DTO\PasswordTokenDTO;
-use App\Versions\V1\DTO\SocialAuthorizeDTO;
+use App\Versions\V1\DTO\Auth\PasswordTokenDTO;
+use App\Versions\V1\DTO\Auth\SocialAuthorizeDTO;
 use App\Versions\V1\Facades\OAuth;
 use App\Versions\V1\Http\Requests\Auth\SocialiteRedirectRequest;
 use App\Versions\V1\Services\SocialiteService;

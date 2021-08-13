@@ -2,7 +2,7 @@
 
 namespace App\Versions\V1\Factories\DTO;
 
-use App\Versions\V1\DTO\PasswordTokenDTO;
+use App\Versions\V1\DTO\Auth\PasswordTokenDTO;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class PasswordTokenDTOFactory implements FactoryInterface

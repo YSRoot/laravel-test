@@ -2,7 +2,7 @@
 
 namespace App\Versions\V1\Factories\DTO;
 
-use App\Versions\V1\DTO\RefreshInputDTO;
+use App\Versions\V1\DTO\Auth\RefreshInputDTO;
 use App\Versions\V1\Http\Requests\Auth\RefreshTokenRequest;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 

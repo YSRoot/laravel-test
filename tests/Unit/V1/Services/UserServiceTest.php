@@ -4,7 +4,7 @@ namespace Tests\Unit\V1\Services;
 
 use App\Events\UserRegistered;
 use App\Models\User;
-use App\Versions\V1\DTO\UserDTO;
+use App\Versions\V1\DTO\Users\UserDTO;
 use App\Versions\V1\Services\UserService;
 use Illuminate\Support\Facades\Event;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;

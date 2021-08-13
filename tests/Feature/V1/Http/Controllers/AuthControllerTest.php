@@ -6,11 +6,11 @@ use App\Events\UserRegistered;
 use App\Models\User;
 use App\Versions\V1\Http\Controllers\Auth\AuthController;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Laravel\Passport\Client;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\Feature\TestCase;
 
 class AuthControllerTest extends TestCase
@@ -27,7 +27,9 @@ class AuthControllerTest extends TestCase
         parent::setUp();
 
         $this->client = Client::factory()->asPasswordClient()->create();
-        $this->user = User::factory()->state(['password' => bcrypt(self::PASSWORD)])->create();
+        /** @var User $user */
+        $user = User::factory()->state(['password' => bcrypt(self::PASSWORD)])->create();
+        $this->user = $user;
     }
 
     public function testSuccessRegister(): void
@@ -122,7 +124,7 @@ class AuthControllerTest extends TestCase
         $registerParams = [
             'name' => $this->faker->name(),
             'email' => $this->user->email,
-            'password' => $password = $this->faker->password(8, 128),
+            'password' => $password = $this->faker->password(8, 128) . 'a1A',
             'password_confirmation' => $password,
         ];
 

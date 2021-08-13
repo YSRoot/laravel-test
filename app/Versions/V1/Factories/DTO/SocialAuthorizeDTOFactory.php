@@ -2,7 +2,7 @@
 
 namespace App\Versions\V1\Factories\DTO;
 
-use App\Versions\V1\DTO\SocialAuthorizeDTO;
+use App\Versions\V1\DTO\Auth\SocialAuthorizeDTO;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class SocialAuthorizeDTOFactory implements FactoryInterface

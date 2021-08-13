@@ -2,7 +2,7 @@
 
 namespace App\Versions\V1\Factories\DTO;
 
-use App\Versions\V1\DTO\LoginInputDTO;
+use App\Versions\V1\DTO\Auth\LoginInputDTO;
 use App\Versions\V1\Http\Requests\Auth\LoginRequest;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 

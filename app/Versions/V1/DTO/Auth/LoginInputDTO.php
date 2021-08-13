@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Versions\V1\DTO;
+namespace App\Versions\V1\DTO\Auth;
 
 use App\DTO\BaseDTO;
+use App\Versions\V1\DTO\Contracts\OAuthAuthorizeContract;
 use App\Versions\V1\DTO\Traits\HasFactory;
 use App\Versions\V1\Factories\DTO\LoginInputDTOFactory;
+use JetBrains\PhpStorm\ArrayShape;
 
-/** @method static LoginInputDTOFactory factory() */
+/**
+ * @method static LoginInputDTOFactory factory()
+ */
 class LoginInputDTO extends BaseDTO implements OAuthAuthorizeContract
 {
     use HasFactory;
@@ -19,6 +23,13 @@ class LoginInputDTO extends BaseDTO implements OAuthAuthorizeContract
     public string $clientSecret;
     public string $scope;
 
+    #[ArrayShape([
+        'username' => "string",
+        'password' => "string",
+        'client_id' => "string",
+        'client_secret' => "string",
+        'scope' => "string"
+    ])]
     public function authorizeParams(): array
     {
         return [

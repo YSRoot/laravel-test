@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Versions\V1\DTO;
+namespace App\Versions\V1\DTO\Contracts;
 
 interface OAuthAuthorizeContract
 {

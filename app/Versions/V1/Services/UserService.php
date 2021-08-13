@@ -4,7 +4,7 @@ namespace App\Versions\V1\Services;
 
 use App\Events\UserRegistered;
 use App\Models\User;
-use App\Versions\V1\DTO\UserDTO;
+use App\Versions\V1\DTO\Users\UserDTO;
 use Illuminate\Support\Str;
 
 class UserService

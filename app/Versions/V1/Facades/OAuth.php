@@ -2,7 +2,7 @@
 
 namespace App\Versions\V1\Facades;
 
-use App\Versions\V1\DTO\OAuthAuthorizeContract;
+use App\Versions\V1\DTO\Contracts\OAuthAuthorizeContract;
 use App\Versions\V1\Services\Auth\OAuthManagers\TokenManagerInterface;
 use Illuminate\Support\Facades\Facade;
 

@@ -3,8 +3,8 @@
 namespace App\Versions\V1\Services;
 
 use App\Models\UserSocialProfile;
-use App\Versions\V1\DTO\UserDTO;
-use App\Versions\V1\DTO\UserSocialProfileDTO;
+use App\Versions\V1\DTO\Users\UserDTO;
+use App\Versions\V1\DTO\Users\UserSocialProfileDTO;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Two\User as SocialiteUser;
