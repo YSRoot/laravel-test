@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\V1\Bridge;
+namespace Tests\Unit\V1\Bridge;
 
 use App\Enums\GrantTypeEnum;
 use App\Versions\V1\Bridge\Socialite;
@@ -34,7 +34,7 @@ class SocialiteTest extends TestCase
             'client_secret' => 'secret',
             'scope' => '*',
         ];
-        list($session, $request) = $this->mockRedirectRequest($clientParams);
+        [$session, $request] = $this->mockRedirectRequest($clientParams);
         $socialiteService = $this->mock(SocialiteService::class);
 
         $result = (new Socialite($socialiteService))->redirect($request, $driver);
@@ -158,6 +158,6 @@ class SocialiteTest extends TestCase
         $request->setLaravelSession($session);
         $this->app->make('request')->setLaravelSession($session);
 
-        return array($session, $request);
+        return [$session, $request];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\V1\Services;
+namespace Tests\Unit\V1\Services;
 
 use App\Events\UserRegistered;
 use App\Models\User;

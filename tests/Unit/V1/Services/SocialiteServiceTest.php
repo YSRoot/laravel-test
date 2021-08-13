@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\V1\Services;
+namespace Tests\Unit\V1\Services;
 
 use App\Models\UserSocialProfile;
 use App\Versions\V1\Services\SocialiteService;
